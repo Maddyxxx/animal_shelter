@@ -20,9 +20,10 @@ from view_animals.views import AnimalFormView, AnimalEditFormView, SheltersView,
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('view_animals.urls')),
-    path('main_page/', SheltersView.as_view()),
+    path('main_page/', SheltersView.as_view(), name='main'),
     path('animal/register/', AnimalFormView.as_view()),
     path('animal/<int:animal_id>/edit/', AnimalEditFormView.as_view()),
     path('<int:shelter_id>/animals/', ShowAnimals.as_view(), name='животные'),
-    path('animals/<int:animal_id>/', AnimalView.as_view(), name='информация о животном')
+    path('animals/<int:animal_id>/', AnimalView.as_view(), name='информация о животном'),
+    path('users/', include('app_users.urls'))
 ]

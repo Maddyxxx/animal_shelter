@@ -5,8 +5,10 @@
     <title>Приют</title>
 </head>
 <a href="/main_page">Назад</a>
-<h2>{{ shelter.name }}</h2>
-<div>{{ shelter.address }}</div>
+<figure>
+<h2>{{ shelter.name }}</h2><div>{{ shelter.description }}</div>
+</figure>
+<div>Наше местонахождение: {{ shelter.city }}, {{ shelter.address }}</div>
 <body>
     {% if animals %}
     <ul>
