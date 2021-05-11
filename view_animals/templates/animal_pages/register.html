@@ -2,15 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация животного</title>
 </head>
 <body>
- <a href="/main_page">Назад</a>
- <h2>Регистрация нового животного</h2>
-<form method="post" action="/animal/register/">
-    {% csrf_token %}
-    {{ animal_form.as_p }}
-    <button type="submit">Зарегистрировать</button>
-</form>
+    <h1>Регистрация нового животного</h1>
+    <form id="form-container" method="POST">
+        {% csrf_token %}
+        {{animal_formset.management_form}}
+        {% for form in animal_formset %}
+        <div class="animal-form">
+        {{form.as_p}}
+        </div>
+        {% endfor %}
+        <button id="add-form" type="button">Добавить еще одного</button>
+        <button type="submit">Добавить</button>
+    </form>
+
+
+    <script>
+        let animalForm = document.querySelectorAll(".animal-form")
+        let container = document.querySelector("#form-container")
+        let addButton = document.querySelector("#add-form")
+        let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+        let formNum = animalForm.length-1
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e){
+            e.preventDefault()
+
+            let newForm = animalForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, addButton)
+
+            totalForms.setAttribute('value', `${formNum+1}`)
+        }
+    </script>
+
+
+
 </body>
 </html>

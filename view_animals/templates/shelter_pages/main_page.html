@@ -5,22 +5,40 @@
     <title>Главная страница</title>
 </head>
 <body>
-<h2>Приюты</h2>
-    {% if shelters %}
+{% if request.user.is_authenticated %}
+    <h3>Добро пожаловать, {{ request.user.username }}!</h3>
+    <p><a href="/users/logout">Выйти</a> </p>
+    <h2>Приюты</h2>
+        {% if shelters %}
+        <ul>
+            {% for shelter in shelters %}
+            <li>
+            <figure>
+                {{ shelter.name }}, {{ shelter.city }}
+                <form method="get" action="/{{ shelter.id }}/animals"><button>Показать животных из приюта</button></form>
+            </figure>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>Приютов нет нет</p>
+        {% endif %}
+    <p>
+    <form method="get" action="/animal/register"><button>Зарегистрировать новое животное</button></form>
+{% else %}
+    <h3>Вы не авторизованы на сайте</h3>
+    <a href="/users/login">Войти</a>
+    {% if animals %}
+    <h4>Список всех животных</h4>
     <ul>
-        {% for shelter in shelters %}
-        <li>
-        <figure>
-            {{ shelter.name }}
-            <form method="get" action="/{{ shelter.id }}/animals/"><button>Показать животных из приюта</button></form>
-        </figure>
-        </li>
+        {% for animal in animals %}
+        <li>{{ animal.name }}, {{ animal.shelter.name }}</li>
         {% endfor %}
     </ul>
+        Всего животных в приютах {{ count }}
     {% else %}
-        <p>Приютов нет нет</p>
+        <p>Животных в приюте нет</p>
     {% endif %}
-<p>
-<form method="get" action="/animal/register"><button>Зарегистрировать новое животное</button></form>
+{% endif %}
 </body>
 </html>

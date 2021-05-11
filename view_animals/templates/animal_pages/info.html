@@ -5,6 +5,7 @@
     <title>{{ animal.name }}</title>
 </head>
 <body>
+<a href="/{{ animal.shelter.id }}/animals">Назад</a>
 <h3>{{ animal.name }}</h3>
 <ul>
     <li>Возраст {{ animal.age }}</li>
@@ -14,6 +15,6 @@
     <li>Особые приметы: {{ animal.special_signs }}</li>
     <li>Приют: {{ animal.shelter.name }}, адрес: {{ animal.shelter.address }}</li>
 </ul>
-<form method="get" action="/animals/{{ animal_id }}/edit/"><button>Редактировать</button></form>
+<form method="get" action="/animal/{{ animal_id }}/edit/"><button>Редактировать</button></form>
 </body>
 </html>

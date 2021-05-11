@@ -23,7 +23,7 @@ class Animal(models.Model):
     arrival_date = models.DateField(default=timezone.now)
     weight = models.CharField(max_length=20)
     height = models.CharField(max_length=20)
-    special_signs =  models.CharField(max_length=200, default='subscribe....')
+    special_signs = models.CharField(max_length=200, default='subscribe....')
     description = models.CharField(max_length=1000)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='arrived')
     shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
