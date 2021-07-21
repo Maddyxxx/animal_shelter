@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация животного</title>
+    <link rel="stylesheet" href="{% static 'styles/register_style.css' %}" type = text/css>
 </head>
 <body>
-    <h1>Регистрация нового животного</h1>
-    <form id="form-container" method="POST">
+    <div class="container">
+        <h1>Регистрация нового животного</h1>
+    <form id="form-container" method="POST" class="form">
         {% csrf_token %}
         {{animal_formset.management_form}}
         {% for form in animal_formset %}
-        <div class="animal-form">
+<!--        <div class="animal-form">-->
         {{form.as_p}}
-        </div>
+<!--        </div>-->
         {% endfor %}
-        <button id="add-form" type="button">Добавить еще одного</button>
-        <button type="submit">Добавить</button>
+        <button id="show-form" class="content__block" type="button">Добавить еще одного</button>
+        <button type="submit" class="btn">Добавить</button>
     </form>
-
-
     <script>
         let animalForm = document.querySelectorAll(".animal-form")
         let container = document.querySelector("#form-container")
         let addButton = document.querySelector("#add-form")
         let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+        let showForm = document.querySelector("#show-form")
+
+        function show_form(e) {
+            e.click(('.content__block').slideToggle(addForm()));
+        }
 
         let formNum = animalForm.length-1
-        addButton.addEventListener('click', addForm)
+        addButton.addEventListener('click', show_form)
 
         function addForm(e){
             e.preventDefault()
@@ -43,7 +48,6 @@
         }
     </script>
 
-
-
+    </div>
 </body>
 </html>

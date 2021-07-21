@@ -1,0 +1,58 @@
+.content__block {display: none;}
+
+        body {
+            background-image: url("dog.jpg") ;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        h1 {
+            font-family: 'Open Sans';
+            font-size: 27px;
+        }
+
+
+        .form {
+            padding: 10px;
+            max-width: 100%;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+        p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 75%;
+            font-size: 20px;
+            font-family: 'Open Sans';
+        }
+
+        input {
+            padding: 5px;
+            border: 2px solid;
+            border-radius: 10px;
+        }
+
+        #id_form-0-status,
+        #id_form-0-shelter
+        {
+            border: 2px solid;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 170px;
+            font-family: 'Open Sans';
+        }
+
+        .container {
+            max-width: 50%;
+            margin: 0 auto;
+        }
+
+        .btn {
+            padding: 10px;
+            border: 2px solid;
+            border-radius: 10px;
+            font-size: 20px;
+            font-family: "Open Sans";
+        }

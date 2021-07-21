@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
+    <style>
+        i {color: blue;}
+        .content__block {display: none;}
+    </style>
 </head>
 <body>
 {% if request.user.is_authenticated %}
@@ -31,10 +35,21 @@
     {% if animals %}
     <h4>Список всех животных</h4>
     <ul>
-        {% for animal in animals %}
+        {% for animal in animals_5 %}
         <li>{{ animal.name }}, {{ animal.shelter.name }}</li>
         {% endfor %}
     </ul>
+    <details>
+        <summary><i>Показать всех</i></summary>
+        <ul>
+        {% for animal in animals %}
+        <li>{{ animal.name }}, {{ animal.shelter.name }}</li>
+        {% endfor %}
+        </ul>
+    </details>
+
+
+
         Всего животных в приютах {{ count }}
     {% else %}
         <p>Животных в приюте нет</p>

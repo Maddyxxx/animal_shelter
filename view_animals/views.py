@@ -1,8 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
-from django.urls import reverse_lazy
 
 from view_animals.models import Animal, Shelter
 from view_animals.forms import AnimalForm, AnimalFormSet
@@ -23,7 +22,7 @@ class SheltersView(View):
         animals = Animal.objects.all()
         all_animals_count = animals.count()
         return render(request, 'shelter_pages/main_page.html', context={
-            'shelters': shelters, 'animals': animals, 'count': all_animals_count})
+            'shelters': shelters, 'animals_5': animals[:5], 'animals': animals[5:], 'count': all_animals_count})
 
 
 class AnimalView(View):
